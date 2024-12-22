@@ -36,7 +36,7 @@ return{
       lspconfig.tailwindcss.setup{}
       vim.keymap.set('n','L',vim.lsp.buf.hover,{})
       vim.keymap.set('n','gd',vim.lsp.buf.definition,{})
-      vim.keymap.set({'n','v'},'<leader>r',vim.lsp.buf.code_action,{})
+      vim.keymap.set({'n','v'},'<leader>t',vim.lsp.buf.code_action,{})
 
 
 
