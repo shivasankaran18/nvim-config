@@ -1,42 +1,55 @@
 return {
-    "folke/tokyonight.nvim",
-    priority = 1000,
-    config = function()
-        require("tokyonight").setup({
-            style = "night", -- Options: "storm", "moon", "night", "day"
-            transparent = false, -- NVChad typically uses non-transparent backgrounds
-            terminal_colors = true, -- Sync terminal colors with the theme
-            styles = {
-                comments = { italic = true }, -- Italicized comments
-                keywords = {}, -- Default style for keywords
-                functions = {}, -- Default style for functions
-                variables = {}, -- Default style for variables
-            },
-            sidebars = { "qf", "help", "terminal", "packer", "NvimTree" }, -- Include NVChad panels
-            lualine_bold = true, -- Bold separators in Lualine
-            on_colors = function(colors)
-                -- Customize colors for NVChad-like aesthetics
-                colors.bg = "#1e1e2e" -- Match NVChad dark background
-                colors.bg_highlight = "#2a2a37" -- Slightly lighter highlight background
-                colors.comment = "#6f7486" -- Dimmed comments
-                colors.line_number = "#3b4261" -- Dimmed line number color
-                colors.vert_split = "#2a2a37" -- Split line color
-                colors.fg = "#c0caf5" -- Foreground text color
-            end,
-            on_highlights = function(hl, colors)
-                -- Customize highlights to match NVChad
-                hl.LineNr = { fg = colors.line_number }
-                hl.CursorLine = { bg = colors.bg_highlight }
-                hl.Comment = { fg = colors.comment, italic = true }
-                hl.Normal = { bg = colors.bg, fg = colors.fg }
-                hl.VertSplit = { fg = colors.vert_split } -- Split line color
-                hl.NvimTreeNormal = { bg = colors.bg, fg = colors.fg } -- File tree background
-                hl.NvimTreeVertSplit = { fg = colors.vert_split } -- File tree separator
-            end,
-        })
+  'projekt0n/github-nvim-theme',
+  name = 'github-theme',
+  lazy = false, -- make sure we load this during startup if it is your main colorscheme
+  priority = 1000, -- make sure to load this before all the other start plugins
+  config = function()
+    require('github-theme').setup({
 
-        -- Apply the colorscheme
-        vim.cmd.colorscheme("tokyonight")
-    end,
+	    options = {
+    -- Compiled file's destination location
+    compile_path = vim.fn.stdpath('cache') .. '/github-theme',
+    compile_file_suffix = '_compiled', -- Compiled file suffix
+    hide_end_of_buffer = true, -- Hide the '~' character at the end of the buffer for a cleaner look
+    hide_nc_statusline = true, -- Override the underline style for non-active statuslines
+    transparent = false,       -- Disable setting bg (make neovim's background transparent)
+    terminal_colors = true,    -- Set terminal colors (vim.g.terminal_color_*) used in `:terminal`
+    dim_inactive = false,      -- Non focused panes set to alternative background
+    module_default = true,     -- Default enable value for modules
+    styles = {                 -- Style to be applied to different syntax groups
+      comments = 'NONE',       -- Value is any valid attr-list value `:help attr-list`
+      functions = 'NONE',
+      keywords = 'NONE',
+      variables = 'NONE',
+      conditionals = 'NONE',
+      constants = 'NONE',
+      numbers = 'NONE',
+      operators = 'NONE',
+      strings = 'NONE',
+      types = 'NONE',
+    },
+    inverse = {                -- Inverse highlight for different types
+      match_paren = false,
+      visual = false,
+      search = false,
+    },
+    darken = {                 -- Darken floating windows and sidebar-like windows
+      floats = true,
+      sidebars = {
+        enable = true,
+        list = {},             -- Apply dark background to specific windows
+      },
+    },
+    modules = {                -- List of various plugins and additional options
+      -- ...
+    },
+  },
+  palettes = {},
+  specs = {},
+  groups = {},
+      -- ...
+    })
+
+    vim.cmd('colorscheme github_dark_default')
+  end,
 }
-

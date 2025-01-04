@@ -1,21 +1,29 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- optionally enable 24-bit colour
 vim.opt.termguicolors = true
 
--- Search configuration and key mappings
 vim.api.nvim_set_keymap('n', '/', '/\\v', { noremap = true, silent = true }) -- Start search with /\v for regular expression mode
+vim.api.nvim_set_keymap('n', '<Esc>', ':noh<CR><Esc>', { noremap = true, silent = true })
 
--- Jump to the next search result with Enter
 vim.api.nvim_set_keymap('n', '<CR>', 'n', { noremap = true, silent = true }) -- Jump to the next search result
 
--- Center cursor after jumping to next search result with n and N
 vim.api.nvim_set_keymap('n', 'n', 'nzzzv', { noremap = true }) -- Center cursor after next match
 vim.api.nvim_set_keymap('n', 'N', 'Nzzzv', { noremap = true }) -- Center cursor after previous match
-
+vim.api.nvim_set_keymap('n', 'r', '<nop>', { noremap = true, silent = true })
+vim.keymap.set("n", "r", [[:%s/]], { noremap = true, silent = false })
 
 vim.g.mapleader=" "
+
+local o = vim.o
+local opt = vim.opt
+
+o.expandtab = true       -- Use spaces instead of tabs
+o.shiftwidth = 4        -- Number of spaces for auto-indentation
+o.tabstop = 4            -- Number of spaces a tab counts for
+o.softtabstop = 4        -- Number of spaces a <Tab> counts for while editing
+o.smartindent = true     -- Automatically indent new lines
+o.autoindent = true      -- Copy indent from the current line when starting a new line
 
 
 

@@ -4,7 +4,7 @@ return {
 	{
 		"tpope/vim-fugitive",
 		config = function()
-			vim.keymap.set("n", "<leader>e", ":Git<Space>", {})
+			vim.keymap.set("n", "e", ":Git<Space>", {})
 		end,
 	},
 	{

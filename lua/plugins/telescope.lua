@@ -1,35 +1,37 @@
-return
-{
+return {
+  {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.8',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      local telescope = require("telescope")
+      local builtin = require("telescope.builtin")
 
-    {
-  'nvim-telescope/telescope.nvim', tag = '0.1.8',
-  dependencies = { 'nvim-lua/plenary.nvim', },
-  config=function()
-      local builtin=require("telescope.builtin")
-      vim.keymap.set('n','<leader>f',builtin.find_files,{})
-      vim.keymap.set('n','<leader>d',builtin.live_grep,{})
-    end
+      telescope.setup({
+        defaults = {
+          -- Ensure Telescope uses rg for live grep if available
+          vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case"
+          },
+        },
+      })
 
-    },
-    {
-      'nvim-telescope/telescope-ui-select.nvim',
-      config=function()
-        require("telescope").setup {
-      extensions = {
-      ["ui-select"] = {
-      require("telescope.themes").get_dropdown {
-      }
-    }
-  }
-}
+      -- Load UI select extension if present
+      pcall(telescope.load_extension, "ui-select")
 
-require("telescope").load_extension("ui-select")
-        
-
-      end
-  }
-
-
-
+      -- Keymaps
+      vim.keymap.set('n', 'f', builtin.find_files, { desc = "Find Files" })
+      vim.keymap.set('n', 'D', builtin.live_grep, { desc = "Live Grep" })
+    end,
+  },
+  {
+    'nvim-telescope/telescope-ui-select.nvim',
+  },
 }
 

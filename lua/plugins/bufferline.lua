@@ -11,8 +11,8 @@ return {
             },
         })
         -- Key mappings for navigation
-        vim.keymap.set("n", "j", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
-        vim.keymap.set("n", "k", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
+        vim.keymap.set("n", "k", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
+        vim.keymap.set("n", "j", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
 	vim.keymap.set("n", "x", ":bdelete<CR>", { noremap = true, silent = true })
     end
 }
