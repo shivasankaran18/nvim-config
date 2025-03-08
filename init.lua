@@ -13,15 +13,16 @@ vim.api.nvim_set_keymap('n', 'N', 'Nzzzv', { noremap = true }) -- Center cursor 
 vim.api.nvim_set_keymap('n', 'r', '<nop>', { noremap = true, silent = true })
 vim.keymap.set("n", "r", [[:%s/]], { noremap = true, silent = false })
 
+
 vim.g.mapleader=" "
 
 local o = vim.o
 local opt = vim.opt
 
 o.expandtab = true       -- Use spaces instead of tabs
-o.shiftwidth = 4        -- Number of spaces for auto-indentation
-o.tabstop = 4            -- Number of spaces a tab counts for
-o.softtabstop = 4        -- Number of spaces a <Tab> counts for while editing
+o.shiftwidth = 3        -- Number of spaces for auto-indentation
+o.tabstop = 3            -- Number of spaces a tab counts for
+o.softtabstop = 3        -- Number of spaces a <Tab> counts for while editing
 o.smartindent = true     -- Automatically indent new lines
 o.autoindent = true      -- Copy indent from the current line when starting a new line
 
@@ -34,6 +35,22 @@ o.autoindent = true      -- Copy indent from the current line when starting a ne
 vim.opt.clipboard = "unnamedplus"
 vim.keymap.set("n", "<leader>r", [[:%s/]], { noremap = true, silent = false })
 vim.opt.number = true
+
+
+
+-- Make sure the delete operations (d, dd, etc.) don't use the clipboard
+vim.keymap.set('n', 'd', '"_d')    -- Use register "_" to discard the text in normal mode
+vim.keymap.set('v', 'd', '"_d')    -- Use register "_" to discard the text in visual mode
+vim.keymap.set('n', 'dd', '"_dd')  -- Same for "dd" in normal mode
+vim.keymap.set('v', 'd', '"_d')    -- Same for "d" in visual mode
+
+
+-- Ensure c and cc cut the text (delete and copy to clipboard)
+--vim.keymap.set('n', 'c', '"+c')    -- Copy to clipboard and cut
+vim.keymap.set('v', 'c', '"+c')    -- Copy to clipboard and cut in visual mode
+vim.keymap.set('n', 'cc', '"+cc')  -- Same for "cc" in normal mode
+
+
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then

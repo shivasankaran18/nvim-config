@@ -7,7 +7,7 @@ return {
             ensure_installed = {
                 "c", "lua", "vim", "vimdoc", "query", "elixir", "heex",
                 "javascript", "dockerfile", "gitignore", "prisma", "yaml",
-                "html", "typescript", "java",
+                "html", "typescript", "java","python","json5"
             },
             highlight = {
                 enable = true,

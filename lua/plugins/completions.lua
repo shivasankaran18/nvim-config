@@ -31,6 +31,13 @@ return {
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<Esc>"] = function(fallback)
+            if cmp.visible() then
+              cmp.close()  -- Close completion menu if visible
+            else
+              fallback()  -- Default behavior (exit insert mode)
+            end
+          end,
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
@@ -42,3 +49,4 @@ return {
     end,
   },
 }
+

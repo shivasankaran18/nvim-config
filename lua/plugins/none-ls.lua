@@ -26,10 +26,14 @@ return {
     null_ls.setup({
       sources = {
         null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.prettier.with({
+          -- Explicitly pass the indentation settings (optional, since Prettier will read them from .prettierrc)
+          args = { "--stdin-filepath", "$FILENAME", "--tab-width", "3", "--use-tabs", "false" },
+        }),
         null_ls.builtins.diagnostics.erb_lint,
         null_ls.builtins.diagnostics.rubocop,
         null_ls.builtins.formatting.rubocop,
+        null_ls.builtins.formatting.black,
       },
     })
 
