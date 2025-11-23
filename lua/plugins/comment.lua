@@ -1,12 +1,9 @@
-return{
-	
-    'numToStr/Comment.nvim',
-    config = function()
-        require('Comment').setup()
-	vim.keymap.set('v', '<C-_>', '<Plug>(comment_toggle_linewise_visual)', { noremap = true, silent = true })
-   end
-
-
-
-
+return {
+  'numToStr/Comment.nvim',
+  config = function()
+    require('Comment').setup()
+    -- Map single "/" in visual mode to toggle comment for selection
+    vim.keymap.set("v", "/", "<Plug>(comment_toggle_linewise_visual)", { silent = true })
+  end
 }
+
