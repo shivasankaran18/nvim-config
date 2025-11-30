@@ -28,19 +28,15 @@ vim.keymap.set("n", "s", "$", { noremap = true, silent = true }) -- Go to end of
 vim.keymap.set("n", "c", ":%y+<CR>", { noremap = true, silent = true, desc = "Copy entire file" })
 
 -- Delete entire file content
-vim.keymap.set("n", "z", ":%d<CR>", { noremap = true, silent = true, desc = "Delete entire file" })
+vim.keymap.set("n", "z", "<cmd>silent! %delete _<CR>", {
+  noremap = true,
+  silent = true,
+  desc = "Delete entire file without yanking"
+})
+
 
 vim.keymap.set("n", "q", "0", { noremap = true, silent = true })
 vim.keymap.set("n", "s", "$", { noremap = true, silent = true })
-
-
-
-
-
-
-
-
-
 
 
 vim.keymap.set('n', 'V', ':vsplit<CR>', { noremap = true, silent = true }) -- Vertical split

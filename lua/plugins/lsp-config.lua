@@ -22,7 +22,8 @@ return {
                "graphql",
                "jsonls",
                "yamlls",
-               "pyright"
+               "pyright",
+               "lemminx"
 
             },
          })
@@ -47,6 +48,7 @@ return {
          lspconfig.jsonls.setup({})
          lspconfig.yamlls.setup({})
          lspconfig.pyright.setup({})
+         lspconfig.lemminx.setup({})
 
          -- Keymaps for LSP
          vim.keymap.set('n', 'l', vim.lsp.buf.hover, { desc = "Show Hover Info" })
