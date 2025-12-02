@@ -23,7 +23,8 @@ return {
                "jsonls",
                "yamlls",
                "pyright",
-               "lemminx"
+               "lemminx",
+               "gopls",
 
             },
          })
@@ -49,6 +50,7 @@ return {
          lspconfig.yamlls.setup({})
          lspconfig.pyright.setup({})
          lspconfig.lemminx.setup({})
+         lspconfig.gopls.setup({})
 
          -- Keymaps for LSP
          vim.keymap.set('n', 'l', vim.lsp.buf.hover, { desc = "Show Hover Info" })
@@ -80,20 +82,4 @@ return {
          end
       end,
    },
-   -- {
-   --   "glepnir/lspsaga.nvim", -- Enhanced LSP UI
-   --   event = "BufRead",
-   --   config = function()
-   --     require("lspsaga").setup({
-   --       ui = {
-   --         border = "rounded",
-   --         winblend = 10,
-   --       },
-   --
-   --       symbol_in_winbar = {
-   --         enable = true,
-   --       },
-   --     })
-   --   end,
-   -- },
 }
