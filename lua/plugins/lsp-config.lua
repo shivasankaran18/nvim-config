@@ -27,31 +27,21 @@ return {
                "gopls",
 
             },
+            handlers = {
+               function(server)
+                  if vim.lsp.config[server] then
+                     vim.lsp.config[server].setup({})
+                  end
+               end,
+            },
+
          })
       end,
    },
    {
       "neovim/nvim-lspconfig",
       config = function()
-         local lspconfig = require('lspconfig')
-
-         -- LSP servers
-         lspconfig.lua_ls.setup({})
-         lspconfig.ts_ls.setup({})
-         lspconfig.cssls.setup({})
-         lspconfig.html.setup({})
-         lspconfig.jdtls.setup({})
-         lspconfig.tailwindcss.setup({})
-         lspconfig.prismals.setup({})
-         lspconfig.harper_ls.setup({})
-         lspconfig.dockerls.setup({})
-         lspconfig.graphql.setup({})
-         lspconfig.jsonls.setup({})
-         lspconfig.yamlls.setup({})
-         lspconfig.pyright.setup({})
-         lspconfig.lemminx.setup({})
-         lspconfig.gopls.setup({})
-
+         
          -- Keymaps for LSP
          vim.keymap.set('n', 'l', vim.lsp.buf.hover, { desc = "Show Hover Info" })
          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = "Go to Definition" })
@@ -66,7 +56,7 @@ return {
          vim.diagnostic.config({
             virtual_text = false, -- Disable virtual text
             signs = true,
-            underline = true, -- Enable underlining errors
+            underline = true,     -- Enable underlining errors
             update_in_insert = false,
             float = {
                border = "rounded",
